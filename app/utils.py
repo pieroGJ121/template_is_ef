@@ -28,8 +28,8 @@ def return_info(start_date, end_date, date_format="%d_%m_%Y"):
     return success, failure
 
 
-start = "02_12_2024"
-end = "05_12_2024"
-sucess, failures = return_info(start, end)
-print(sucess)
-print(failures)
+# start = "02_12_2024"
+# end = "05_12_2024"
+# sucess, failures = return_info(start, end)
+# print(sucess)
+# print(failures)
