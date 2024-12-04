@@ -2,16 +2,31 @@ from sqlalchemy import Column, Integer, String, Date
 from app.database import Base
 
 
-class Movie(Base):
-    __tablename__ = "movies"
+class Ticket(Base):
+    __tablename__ == "ticket"
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    genre = Column(String, index=True)
-
-    # New columns
-    director = Column(String, index=True)
-    writer = Column(String, index=True)
-    studio = Column(String, index=True)
-    running_time = Column(Integer)  # Assuming running time in minutes
-    language = Column(String, index=True)
-    release_date = Column(Date)  # Using Date type for dates
+    concierto = Column(string)
+    precio = Column(Integer)
+    
+class Reserva(Base):
+    __tablename_- == "reserva"
+    id = Column(Integer, primary_key=True, index=True)
+    id_ticket = Column(Integer, primary_key=True, index=True)
+    status = Column(String)
+    
+class Compra(Base):
+    __tablename == "compra"
+    id = Column(Integer, primary_key=True, index=True)
+    id_reserva = Column(Integer, primary_key=True, index=True)
+    id_ticket = Column(Integer, primary_key=True, index=True)
+    pay_method = Column(String)
+    
+class Cancelacion(Base):
+    _tablename == "cancelacion"
+    id = Column(Integer, primary_key=True, index=True)
+    id_reserva = Column(Integer, primary_key=True, index=True)
+    id_ticket = Column(Integer, primary_key=True, index=True)
+    reason = Column(String)
+    
+    
+    
