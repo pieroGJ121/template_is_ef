@@ -1,8 +1,10 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
-from app.database import get_db
+from app.database import get_db, Base, engine
 from app.models import User, Ticket, Booking, Purchase, Cancelation
 from app.schemas import Booking_schema, User_and_ticket_schema
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -17,8 +19,8 @@ def make_purchase(booking_base: Booking_schema, db: Session = Depends(get_db)):
     # Registrar la compra
     new_purchase = Purchase(
         dni=booking_base.dni,
-        id_reserva=id_booking,
-        id_ticket=booking_base.id_ticket
+        id_reserva=booking_base.id_booking,
+        id_ticket=booking.id_ticket
     )
     db.add(new_purchase)
     db.commit()
@@ -30,15 +32,15 @@ def make_purchase(booking_base: Booking_schema, db: Session = Depends(get_db)):
 def make_cancelation(booking_base: Booking_schema, db: Session = Depends(get_db)):
     # Verificar que la reserva y el ticket existen
     booking = db.query(Booking).filter(Booking.id == booking_base.id_booking).first()
-    user = db.query(User).filter(User.id == booking_base.dni).first()
+    user = db.query(User).filter(User.dni == booking_base.dni).first()
     if not booking or not user:
         raise HTTPException(status_code=404, detail="Booking or Ticket not found")
 
     # Registrar la cancelación y actualizar la reserva
     new_cancelation = Cancelation(
         dni=booking_base.dni,
-        id_reserva=id_booking,
-        id_ticket=booking_base.id_ticket
+        id_reserva=booking_base.id_booking,
+        id_ticket=booking.id_ticket
     )
     db.add(new_cancelation)
     ##AQUI VA EL PUT PARA ACTUALIZAR EL ESTADO

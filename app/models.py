@@ -25,7 +25,7 @@ class Ticket(Base):
 class Booking(Base):
     __tablename__ = "booking"
     id = Column(Integer, primary_key=True, index=True)
-    dni = Column(Integer, ForeignKey("user.dni"), nullable=False)
+    dni = Column(String, ForeignKey("user.dni"), nullable=False)
     id_ticket = Column(Integer, ForeignKey("ticket.id"), nullable=False)
     status = Column(String, nullable=False)
 
@@ -36,7 +36,7 @@ class Booking(Base):
 class Purchase(Base):
     __tablename__ = "purchase"
     id = Column(Integer, primary_key=True, index=True)
-    dni = Column(Integer, ForeignKey("user.dni"), nullable=False)
+    dni = Column(String, ForeignKey("user.dni"), nullable=False)
     id_reserva = Column(Integer, ForeignKey("booking.id"), nullable=False)
     id_ticket = Column(Integer, ForeignKey("ticket.id"), nullable=False)
 
@@ -48,7 +48,7 @@ class Purchase(Base):
 class Cancelation(Base):
     __tablename__ = "cancelation"
     id = Column(Integer, primary_key=True, index=True)
-    dni = Column(Integer, ForeignKey("user.dni"), nullable=False)
+    dni = Column(String, ForeignKey("user.dni"), nullable=False)
     id_reserva = Column(Integer, ForeignKey("booking.id"), nullable=False)
     id_ticket = Column(Integer, ForeignKey("ticket.id"), nullable=False)
 
