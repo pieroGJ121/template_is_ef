@@ -1,0 +1,5 @@
+[pytest]
+postgresql_user=postgres
+postgresql_password=aaron546
+postgresql_dbname=test_db
+postgresql_port=5432
