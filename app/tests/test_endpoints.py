@@ -3,7 +3,7 @@ from app.main import app
 
 client = TestClient(app)
 
-dni = "87654321"
+dni = "123456789"
 id_booking = "2"
 id_ticket = "2"
 
