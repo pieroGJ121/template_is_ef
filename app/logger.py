@@ -4,6 +4,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 from datetime import datetime
 
+
 # Create a logger
 logger = logging.getLogger("DailyLogger")
 logger.setLevel(logging.DEBUG)  # Set the desired logging level
